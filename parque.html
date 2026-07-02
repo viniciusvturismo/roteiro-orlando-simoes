@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VTurismo · Parques de Orlando</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#1D9E75;--green-d:#0F6E56;--green-dd:#0A4F3E;
+    --bg-dark:#0D2218;--bg-dark2:#102E20;--mint:#E1F5EE;--mint2:#CDEDE1;
+    --ink:#16261F;--muted:#5E7368;
+    --c-alta:#E07A3A;--c-alta2:#D6452B;--c-media:#E0A93B;--c-baixa:#2BA66B;--wa:#25D366;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;color:var(--ink);background:var(--mint);
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;}
+
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(10,34,24,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,255,255,.08);}
+  .topbar-in{max-width:820px;margin:0 auto;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .back{display:inline-flex;align-items:center;gap:7px;color:#fff;text-decoration:none;font-size:13px;font-weight:600;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 13px;border-radius:30px;transition:.15s;}
+  .back:hover{background:rgba(255,255,255,.16);}
+  .topbar img{height:26px;width:auto;display:block;}
+
+  .wrap{max-width:820px;margin:0 auto;}
+
+  /* hero do parque */
+  .phero{position:relative;overflow:hidden;color:#fff;min-height:300px;display:flex;align-items:flex-end;}
+  .phero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;}
+  .phero::after{content:"";position:absolute;inset:0;z-index:2;
+    background:linear-gradient(180deg,rgba(10,34,24,.15) 0%,rgba(10,34,24,.55) 55%,rgba(10,34,24,.94) 100%);}
+  .phero-in{position:relative;z-index:3;padding:26px 18px 22px;width:100%;max-width:820px;margin:0 auto;}
+  .phero .kick{display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9FE6CC;margin-bottom:8px;}
+  .phero h1{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:clamp(28px,7vw,42px);line-height:1.05;margin:0;letter-spacing:-.5px;}
+  .phero .tag{font-size:15px;color:#EAFBF4;margin-top:6px;font-weight:500;max-width:600px;}
+  .phero .meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px;}
+  .chip{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:8px 13px;border-radius:30px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff;}
+  .chip.crowd .dot{width:9px;height:9px;border-radius:50%;}
+  .chip.adj{background:linear-gradient(135deg,var(--green),var(--green-d));border-color:transparent;}
+
+  /* intro */
+  .intro{padding:24px 18px 6px;}
+  .intro p{font-size:15px;line-height:1.7;color:#2E433A;margin:0 0 14px;}
+  .dica{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--mint2);
+    border-left:4px solid var(--green);border-radius:12px;padding:14px 16px;margin:4px 0 4px;}
+  .dica .ic{flex-shrink:0;width:32px;height:32px;border-radius:9px;background:var(--green);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .dica .tx{font-size:13.5px;line-height:1.55;color:#2E433A;}
+  .dica .tx b{color:var(--green-dd);}
+
+  /* atrações */
+  .sec-title{max-width:820px;margin:0 auto;padding:22px 18px 4px;display:flex;align-items:center;gap:10px;}
+  .sec-title h2{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:21px;color:var(--green-dd);margin:0;}
+  .sec-title .ln{flex:1;height:2px;background:var(--mint2);border-radius:2px;}
+
+  .grid{padding:14px 18px 8px;display:grid;grid-template-columns:1fr;gap:16px;}
+  @media(min-width:620px){ .grid{grid-template-columns:1fr 1fr;} }
+  .atr{background:#fff;border:1px solid var(--mint2);border-radius:16px;overflow:hidden;
+    box-shadow:0 6px 20px rgba(13,34,24,.07);display:flex;flex-direction:column;}
+  .atr .ph{position:relative;aspect-ratio:16/10;background:var(--mint2);overflow:hidden;}
+  .atr .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .atr .ph.noimg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    background:linear-gradient(135deg,var(--green-d),var(--green-dd));color:#fff;}
+  .atr .ph.noimg .em{font-size:34px;opacity:.9;}
+  .atr .ph.noimg small{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9FE6CC;}
+  .atr .bd{padding:14px 15px 16px;}
+  .atr .bd h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:16.5px;color:var(--ink);margin:0 0 6px;line-height:1.2;}
+  .atr .bd p{font-size:13.5px;line-height:1.6;color:#41544B;margin:0;}
+  .atr .bd .hl{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+    color:var(--green-d);background:var(--mint);border-radius:20px;padding:3px 9px;margin-bottom:8px;}
+
+  /* navegação (rota) */
+  .goto{max-width:820px;margin:0 auto;padding:8px 18px 4px;}
+  .goto .nav-row{display:flex;flex-wrap:wrap;gap:9px;}
+  .goto .nlab{flex-basis:100%;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
+  .nav-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;font-size:13px;font-weight:700;
+    padding:11px 15px;border-radius:12px;transition:.15s;flex:1;min-width:140px;}
+  .nav-btn svg{width:16px;height:16px;}
+  .nav-btn.gmaps{background:#fff;color:var(--green-d);border:1.5px solid var(--mint2);}
+  .nav-btn.gmaps:hover{border-color:var(--green);background:var(--mint);}
+  .nav-btn.waze{background:#33CCFF;color:#08303F;}
+
+  /* rodapé */
+  footer{background:linear-gradient(160deg,var(--bg-dark),#0A1C14);color:#fff;margin-top:28px;}
+  .foot-in{max-width:820px;margin:0 auto;padding:30px 18px 26px;text-align:center;}
+  .foot-in img.logo{width:180px;height:auto;margin:0 auto 8px;display:block;}
+  .foot-in .back2{display:inline-flex;align-items:center;gap:8px;margin-top:6px;color:#0A1C14;background:#7FE3BF;
+    text-decoration:none;font-weight:700;font-size:14px;padding:12px 22px;border-radius:30px;}
+  .foot-cred{font-size:10.5px;color:#6E8C80;margin-top:22px;line-height:1.6;}
+  .foot-cred a{color:#8FB8AC;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="back" href="index.html">← Voltar ao roteiro</a>
+    <img src="LogoBranco.png" alt="VTurismo" />
+  </div>
+</div>
+
+<div id="app"></div>
+
+<footer>
+  <div class="foot-in">
+    <img class="logo" src="LogoBranco.png" alt="VTurismo — Agência de Viagens" />
+    <div><a class="back2" href="index.html">← Voltar ao roteiro completo</a></div>
+    <p class="foot-cred">
+      VTurismo · Agência de Viagens — especialistas em Orlando &amp; Disney.<br>
+      Fotos ilustrativas das atrações via <a href="https://commons.wikimedia.org" target="_blank" rel="noopener">Wikimedia Commons</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* imagens de atração realmente disponíveis (basename sem pasta) — preenchido após curadoria */
+const AVAIL = new Set(["animal-kingdom_everest.jpg","animal-kingdom_pandora.jpg","animal-kingdom_safari.jpg","animal-kingdom_tree.jpg","epcot_norway.jpg","epcot_showcase.jpg","epcot_spaceship.jpg","epic-universe_celestial.jpg","epic-universe_nintendo.jpg","hollywood-studios_galaxy.jpg","hollywood-studios_tower.jpg","islands-of-adventure_hogsmeade.jpg","islands-of-adventure_hogwarts.jpg","islands-of-adventure_veloci.jpg","magic-kingdom_castle.jpg","magic-kingdom_mine.jpg","magic-kingdom_space.jpg","magic-kingdom_thunder.jpg","universal-studios_diagon.jpg","universal-studios_express.jpg","universal-studios_globe.jpg"]);
+
+const HERO = {
+  'animal-kingdom':'img/disney_ak.jpg','epcot':'img/disney_epcot.jpg',
+  'universal-studios':'img/uni_studios.jpg','magic-kingdom':'img/disney_castle.jpg',
+  'epic-universe':'img/uni_epic.jpg','hollywood-studios':'img/disney_hs.jpg',
+  'islands-of-adventure':'img/uni_ioa.jpg'
+};
+
+const PARQUES = {
+ 'animal-kingdom':{
+   nome:"Disney's Animal Kingdom", crowd:8,
+   tag:"O maior parque temático da Disney — natureza, animais de verdade e aventura em cada trilha.",
+   intro:["Dedicado à natureza e à vida selvagem, o Animal Kingdom mistura montanhas-russas com um safári de verdade e a deslumbrante terra de Pandora. É o parque que mais recompensa quem chega cedo: os animais ficam mais ativos no início da manhã e as filas das atrações-ícone disparam ao longo do dia."],
+   dica:"No seu roteiro este é o <b>dia recomendado</b> para o Animal Kingdom — o melhor dia da semana para este parque, mesmo com a lotação geral alta. Comece pelo Kilimanjaro Safaris e por Pandora logo na abertura.",
+   atracoes:[
+     {key:"pandora",titulo:"Pandora – O Mundo de Avatar",hl:"Imperdível",texto:"A terra mais impressionante do parque, com montanhas flutuantes. Abriga o Avatar Flight of Passage, considerado uma das melhores atrações de toda Orlando, e o passeio de barco Na'vi River Journey."},
+     {key:"safari",titulo:"Kilimanjaro Safaris",hl:"Chegar cedo",texto:"Um safári real por mais de 40 hectares de savana africana, com leões, girafas, elefantes e rinocerontes soltos. Melhor logo cedo, quando os animais estão mais ativos."},
+     {key:"everest",titulo:"Expedition Everest",texto:"Montanha-russa temática pelo Himalaia em busca do Yeti, com trecho de marcha à ré. Uma das mais queridas do parque."},
+     {key:"tree",titulo:"Árvore da Vida",texto:"O símbolo do parque: uma árvore de 44 metros com mais de 300 animais esculpidos no tronco. Linda de dia e no show noturno."}
+   ]
+ },
+ 'epcot':{
+   nome:"EPCOT", crowd:8,
+   tag:"Inovação, tecnologia e uma volta ao mundo gastronômica no World Showcase.",
+   intro:["O EPCOT é dividido em duas experiências: a área de inovação e futuro, com atrações de tecnologia, e o World Showcase, um circuito de 11 pavilhões de países com gastronomia, cultura e arquitetura. É o parque da Disney com a melhor comida e o palco do show de fogos noturno."],
+   dica:"Dia <b>4 de julho</b> — feriado nacional e teto de lotação do mês. Faça as atrações concorridas de manhã e, a partir das 16h, garanta jantar no World Showcase e um bom lugar para os fogos, ficando perto da saída para evitar a multidão no fim da noite.",
+   atracoes:[
+     {key:"cosmic",titulo:"Guardians of the Galaxy: Cosmic Rewind",hl:"Imperdível",texto:"Montanha-russa fechada que gira 360° acompanhando a história, uma das mais disputadas do parque. Priorize logo na abertura."},
+     {key:"spaceship",titulo:"Spaceship Earth",texto:"A esfera geodésica que é o símbolo do EPCOT: um passeio suave pela história da comunicação humana, do fogo à internet."},
+     {key:"showcase",titulo:"World Showcase",hl:"Gastronomia",texto:"Onze pavilhões — México, Noruega, China, Alemanha, Itália, Japão, França... Comida típica, lojas e o melhor lugar do parque para o fim de tarde."},
+     {key:"norway",titulo:"Frozen Ever After",texto:"Passeio de barco pelo reino de Arendelle, do filme Frozen, dentro do charmoso pavilhão da Noruega."}
+   ]
+ },
+ 'universal-studios':{
+   nome:"Universal Studios Florida", crowd:8, ajustado:true,
+   tag:"Os bastidores do cinema e da TV — e a entrada para a Diagon Alley de Harry Potter.",
+   intro:["Parque dedicado ao mundo do cinema, com atrações baseadas em grandes franquias e muito humor. Seu grande destaque é a Diagon Alley, a recriação impecável do beco de Harry Potter, ligada ao outro parque pelo Hogwarts Express."],
+   dica:"Este dia foi <b>ajustado pela VTurismo</b>: trocamos a ordem com a Islands of Adventure porque, nesta data, os dados apontavam pico de movimento na IOA — e a Universal Studios estava mais tranquila.",
+   atracoes:[
+     {key:"diagon",titulo:"Diagon Alley",hl:"Imperdível",texto:"O beco de Harry Potter recriado nos mínimos detalhes, com o dragão de Gringotts soltando fogo sobre o banco e a atração Escape from Gringotts."},
+     {key:"express",titulo:"Hogwarts Express",hl:"Park-to-Park",texto:"O trem que liga a Diagon Alley (aqui) a Hogsmeade (na Islands of Adventure). Exige ingresso park-to-park e vale muito a pena."},
+     {key:"rockit",titulo:"Hollywood Rip Ride Rockit",texto:"Montanha-russa de alta velocidade em que você escolhe a trilha sonora que toca durante o percurso."},
+     {key:"globe",titulo:"O Globo Universal",texto:"O icônico globo giratório na entrada — ponto de foto obrigatório e porta de entrada para os estúdios."}
+   ]
+ },
+ 'magic-kingdom':{
+   nome:"Magic Kingdom", crowd:8,
+   tag:"O parque mais icônico da Disney, coroado pelo Castelo da Cinderela.",
+   intro:["É o parque dos clássicos e da magia Disney por excelência, organizado em torno do Castelo da Cinderela. Reúne desde atrações familiares até montanhas-russas queridas por todas as idades, e encerra o dia com um dos shows de fogos mais famosos do mundo."],
+   dica:"Dia neutro nos dados (sem pico nem agravante), dentro da faixa alta da semana. A atração de maior fila costuma ser a Seven Dwarfs Mine Train — deixe-a para a abertura ou o fim da noite.",
+   atracoes:[
+     {key:"castle",titulo:"Castelo da Cinderela",hl:"Ícone",texto:"O coração do parque e cenário do show de fogos. Ponto de encontro e a foto mais clássica de toda a viagem."},
+     {key:"mine",titulo:"Seven Dwarfs Mine Train",hl:"Maior fila",texto:"Montanha-russa família dos Sete Anões, com carrinhos que balançam. A mais disputada do parque — priorize."},
+     {key:"space",titulo:"Space Mountain",texto:"Clássico absoluto: uma montanha-russa no escuro total, viajando pelo espaço, na Tomorrowland."},
+     {key:"thunder",titulo:"Big Thunder Mountain",texto:"Um trem desgovernado por uma mina do velho oeste — diversão para toda a família."}
+   ]
+ },
+ 'epic-universe':{
+   nome:"Universal Epic Universe", crowd:7,
+   tag:"O parque mais novo de Orlando (2025): cinco mundos ao redor do Celestial Park.",
+   intro:["Inaugurado em 2025, o Epic Universe é o parque mais novo e ambicioso da Universal. A partir do hub central, o Celestial Park, abrem-se mundos totalmente imersivos — de Super Nintendo World ao universo de Como Treinar o Seu Dragão e uma nova área de Harry Potter. Por ser novidade, é o parque de maior demanda da semana."],
+   dica:"Por ser recém-inaugurado, aparece com <b>pico de movimento</b> quase todos os dias. Chegue no <b>early entry (9h–10h)</b> e vá direto às atrações mais concorridas antes que as filas cresçam.",
+   atracoes:[
+     {key:"nintendo",titulo:"Super Nintendo World",hl:"Imperdível",texto:"O mundo do Mario ganha vida, com o Mario Kart em realidade aumentada e a área do Donkey Kong. Um dos points mais concorridos do parque."},
+     {key:"ministry",titulo:"The Wizarding World – Ministry of Magic",texto:"Nova área de Harry Potter ambientada na Paris dos anos 1920 e no Ministério da Magia — a mais recente expansão do bruxo em Orlando."},
+     {key:"dragon",titulo:"Isle of Berk",texto:"O universo de Como Treinar o Seu Dragão, com atrações familiares inspiradas na vila viking dos filmes."},
+     {key:"celestial",titulo:"Celestial Park",texto:"O coração do parque: jardins, fontes, restaurantes e a passagem para todos os mundos temáticos."}
+   ]
+ },
+ 'hollywood-studios':{
+   nome:"Disney's Hollywood Studios", crowd:7,
+   tag:"Cinema, Star Wars e Toy Story num só parque.",
+   intro:["Inspirado no glamour de Hollywood, este parque reúne algumas das atrações mais tecnológicas da Disney, incluindo o planeta Batuu de Star Wars e a divertidíssima Toy Story Land. É o parque das filas mais estratégicas: as duas atrações-ícone lotam minutos após a abertura."],
+   dica:"Chegue no <b>early entry</b> e vá direto para <b>Rise of the Resistance</b> e <b>Slinky Dog Dash</b> logo na abertura — são as que formam as maiores filas do dia.",
+   atracoes:[
+     {key:"galaxy",titulo:"Star Wars: Galaxy's Edge",hl:"Imperdível",texto:"O planeta Batuu recriado por completo, com a Rise of the Resistance (uma das atrações mais impressionantes já feitas) e o comando da Millennium Falcon."},
+     {key:"tower",titulo:"Twilight Zone Tower of Terror",texto:"Uma queda livre aterrorizante dentro de um hotel mal-assombrado — clássico com vista de tirar o fôlego no topo."},
+     {key:"rockn",titulo:"Rock 'n' Roller Coaster",texto:"Montanha-russa que dispara de 0 a 100 km/h em segundos, ao som do Aerosmith, com loopings no escuro."},
+     {key:"slinky",titulo:"Slinky Dog Dash",hl:"Chegar cedo",texto:"Montanha-russa família na Toy Story Land, a bordo do cachorrinho Slinky. Uma das maiores filas — priorize na abertura."}
+   ]
+ },
+ 'islands-of-adventure':{
+   nome:"Universal's Islands of Adventure", crowd:7, ajustado:true,
+   tag:"O parque de aventura da Universal — Hogsmeade, super-heróis e dinossauros.",
+   intro:["Considerado um dos melhores parques do mundo para quem gosta de adrenalina, reúne montanhas-russas de tirar o fôlego, a vila de Hogsmeade (Harry Potter) e ilhas temáticas de super-heróis e Jurassic World. Ritmo intenso e atrações que estão entre as mais premiadas de Orlando."],
+   dica:"Este dia foi <b>ajustado pela VTurismo</b>: a IOA saiu do dia 06 (dia de pico dela na nossa análise) e foi remanejada para uma data mais equilibrada da semana. Comece por Hagrid's e pelo VelociCoaster, que formam as maiores filas.",
+   atracoes:[
+     {key:"hogwarts",titulo:"Hogsmeade & Castelo de Hogwarts",hl:"Imperdível",texto:"A vila de Harry Potter com neve o ano todo, abrigando a Forbidden Journey (dentro do castelo) e a premiada Hagrid's Magical Creatures Motorbike Adventure."},
+     {key:"veloci",titulo:"Jurassic World VelociCoaster",hl:"Adrenalina",texto:"Uma das montanhas-russas mais intensas dos Estados Unidos, disparando entre os dinossauros de Jurassic World."},
+     {key:"hulk",titulo:"The Incredible Hulk Coaster",texto:"Lançamento explosivo e loopings de cabeça para baixo — um clássico da adrenalina na ilha dos super-heróis."},
+     {key:"hogsmeade",titulo:"A Vila de Hogsmeade",texto:"Ruas nevadas, a cerveja amanteigada e lojas dos filmes — o point gastronômico e de fotos do parque."}
+   ]
+ }
+};
+
+function slugFromURL(){
+  const p=new URLSearchParams(location.search).get('p');
+  return (p && PARQUES[p]) ? p : 'animal-kingdom';
+}
+function crowdColor(n){ return n>=9?'var(--c-alta2)':n>=7?'var(--c-alta)':n>=4?'var(--c-media)':'var(--c-baixa)'; }
+function gmapsURL(q){ return "https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(q); }
+function wazeURL(q){ return "https://www.waze.com/ul?q="+encodeURIComponent(q)+"&navigate=yes"; }
+const SVG_PIN='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>';
+const SVG_WAZE='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.6 11.9c.5-1.6.2-3.4-.9-4.9-1.4-1.9-3.7-2.9-6.3-2.9-3.9 0-7.1 2.7-7.1 6.6 0 .5 0 1 .1 1.4-.6.5-1 1.2-1 2 0 1.1.8 2 1.9 2.2.6 1 1.7 1.8 3 2.1a2.4 2.4 0 004.7.1 2.4 2.4 0 004.6-.9c1.4-.7 2.4-2 2.4-3.6 0-.9-.4-1.7-1.3-2.2zM9.5 10.5a1 1 0 110-2 1 1 0 010 2zm5 0a1 1 0 110-2 1 1 0 010 2z"/></svg>';
+
+function render(){
+  const slug=slugFromURL(), P=PARQUES[slug];
+  document.title="VTurismo · "+P.nome;
+  const navQ=P.nome+", Orlando, FL";
+
+  const atrHTML=P.atracoes.map(a=>{
+    const file="img/parques/"+slug+"_"+a.key+".jpg";
+    const base=slug+"_"+a.key+".jpg";
+    const ph = AVAIL.has(base)
+      ? `<div class="ph"><img src="${file}" alt="${a.titulo}" loading="lazy"></div>`
+      : `<div class="ph noimg"><span class="em">🎢</span><small>VTurismo · Orlando</small></div>`;
+    return `<div class="atr">${ph}<div class="bd">
+      ${a.hl?`<span class="hl">${a.hl}</span><br>`:""}
+      <h3>${a.titulo}</h3><p>${a.texto}</p></div></div>`;
+  }).join("");
+
+  document.getElementById('app').innerHTML = `
+    <header class="phero">
+      <img class="bg" src="${HERO[slug]}" alt="${P.nome}">
+      <div class="phero-in">
+        <span class="kick">Parque · Orlando</span>
+        <h1>${P.nome}</h1>
+        <p class="tag">${P.tag}</p>
+        <div class="meta">
+          <span class="chip crowd"><span class="dot" style="background:${crowdColor(P.crowd)}"></span>Lotação ${P.crowd}/10</span>
+          ${P.ajustado?`<span class="chip adj">★ Ajustado pela VTurismo</span>`:""}
+        </div>
+      </div>
+    </header>
+
+    <div class="goto">
+      <div class="nav-row">
+        <span class="nlab">Como chegar — rota saindo do hotel</span>
+        <a class="nav-btn gmaps" href="${gmapsURL(navQ)}" target="_blank" rel="noopener">${SVG_PIN} Google Maps</a>
+        <a class="nav-btn waze" href="${wazeURL(navQ)}" target="_blank" rel="noopener">${SVG_WAZE} Waze</a>
+      </div>
+    </div>
+
+    <section class="intro wrap">
+      ${P.intro.map(t=>`<p>${t}</p>`).join("")}
+      <div class="dica"><div class="ic">💡</div><div class="tx">${P.dica}</div></div>
+    </section>
+
+    <div class="sec-title"><h2>Principais atrações</h2><span class="ln"></span></div>
+    <div class="grid wrap">${atrHTML}</div>
+  `;
+}
+render();
+</script>
+</body>
+</html>

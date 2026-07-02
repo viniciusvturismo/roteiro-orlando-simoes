@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VTurismo · Roteiro Orlando — Julho 2026</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#1D9E75;        /* primário   */
+    --green-d:#0F6E56;       /* escuro     */
+    --green-dd:#0A4F3E;      /* mais escuro*/
+    --bg-dark:#0D2218;       /* fundo dark */
+    --bg-dark2:#102E20;
+    --mint:#E1F5EE;          /* fundo claro*/
+    --mint2:#CDEDE1;
+    --ink:#16261F;
+    --muted:#5E7368;
+    /* lotação */
+    --c-baixa:#2BA66B;
+    --c-media:#E0A93B;
+    --c-alta:#E07A3A;        /* 7 — alta   */
+    --c-alta2:#D6452B;       /* 8 — alta+  */
+    --wa:#25D366;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;color:var(--ink);background:var(--mint);
+    font-family:'Montserrat',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 18px;}
+
+  /* ===================== HERO ===================== */
+  .hero{
+    position:relative;overflow:hidden;color:#fff;
+    background:
+      radial-gradient(120% 90% at 85% -10%, rgba(29,158,117,.55), transparent 60%),
+      radial-gradient(90% 70% at 8% 110%, rgba(15,110,86,.6), transparent 55%),
+      linear-gradient(160deg,var(--bg-dark),var(--bg-dark2) 60%,#0A1C14);
+  }
+  .hero::after{ /* textura de "rota"/swoosh sutil */
+    content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;
+    background-image:
+      radial-gradient(circle at 18% 30%, #fff 1.4px, transparent 1.6px),
+      radial-gradient(circle at 72% 18%, #fff 1.1px, transparent 1.3px),
+      radial-gradient(circle at 50% 78%, #fff 1.1px, transparent 1.3px),
+      radial-gradient(circle at 88% 62%, #fff 1.2px, transparent 1.4px);
+    background-size:240px 240px,300px 300px,260px 260px,220px 220px;
+  }
+  .hero-inner{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:30px 18px 40px;}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:34px;}
+  .brand img{width:190px;height:auto;display:block;}
+  .hero-kick{
+    display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;
+    letter-spacing:2px;text-transform:uppercase;color:#9FE6CC;
+    background:rgba(29,158,117,.16);border:1px solid rgba(29,158,117,.4);
+    padding:7px 14px;border-radius:30px;
+  }
+  .hero h1{
+    font-family:'Baloo 2',sans-serif;font-weight:800;font-style:italic;
+    font-size:clamp(30px,8.4vw,52px);line-height:1.02;margin:18px 0 4px;letter-spacing:-.5px;
+  }
+  .hero h1 .fam{color:#7FE3BF;display:block;font-style:normal;}
+  .hero .destino{font-size:clamp(17px,4.4vw,22px);font-weight:600;margin:2px 0 0;color:#EAFBF4;}
+  .hero .periodo{
+    display:inline-flex;align-items:center;gap:9px;margin-top:22px;font-size:14px;font-weight:600;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+    padding:11px 18px;border-radius:14px;color:#fff;
+  }
+  .hero .periodo b{color:#7FE3BF;}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+  .hstat{
+    flex:1;min-width:120px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;padding:14px 16px;
+  }
+  .hstat .n{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:26px;line-height:1;color:#7FE3BF;}
+  .hstat .l{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#C5E8DC;margin-top:6px;font-weight:600;}
+
+  /* ===================== CREDIBILIDADE ===================== */
+  .cred{background:#fff;}
+  .cred-inner{max-width:760px;margin:0 auto;padding:30px 18px;}
+  .cred-tag{font-size:11.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);}
+  .cred h2{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:10px 0 12px;color:var(--green-dd);line-height:1.2;}
+  .cred p{font-size:14.5px;line-height:1.65;color:#33473D;margin:0 0 14px;}
+  .cred p b{color:var(--green-d);}
+  .source{
+    display:flex;gap:13px;align-items:flex-start;background:var(--mint);
+    border:1px solid var(--mint2);border-left:4px solid var(--green);border-radius:12px;padding:14px 16px;margin-top:6px;
+  }
+  .source .ic{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:18px;}
+  .source .tx{font-size:12.5px;line-height:1.55;color:#2E433A;}
+  .source .tx b{color:var(--green-dd);}
+  .source .tx a{color:var(--green-d);font-weight:700;text-decoration:none;border-bottom:1px dotted var(--green);}
+
+  /* escala de lotação */
+  .scale{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+  .scale span{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:600;color:#3a4a44;}
+  .scale i{width:13px;height:13px;border-radius:4px;display:inline-block;}
+
+  /* ===================== TIMELINE ===================== */
+  .timeline-sec{padding:34px 0 10px;}
+  .sec-head{max-width:760px;margin:0 auto;padding:0 18px 6px;}
+  .sec-head .cred-tag{display:block;}
+  .sec-head h2{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:23px;margin:9px 0 0;color:var(--green-dd);}
+
+  .tl{position:relative;max-width:760px;margin:0 auto;padding:22px 18px 10px;}
+  .tl::before{ /* linha vertical */
+    content:"";position:absolute;left:34px;top:30px;bottom:30px;width:3px;
+    background:linear-gradient(var(--green),var(--mint2));border-radius:3px;
+  }
+  .day{position:relative;padding-left:54px;margin-bottom:18px;}
+  .day .node{
+    position:absolute;left:23px;top:20px;width:25px;height:25px;border-radius:50%;
+    background:#fff;border:3px solid var(--green);z-index:2;
+    display:flex;align-items:center;justify-content:center;font-size:13px;
+  }
+  .day.is-park .node{background:var(--green);}
+  .card{
+    background:#fff;border:1px solid var(--mint2);border-radius:16px;overflow:hidden;
+    box-shadow:0 6px 22px rgba(13,34,24,.07);transition:.18s;
+  }
+  .card:hover{box-shadow:0 10px 30px rgba(13,34,24,.12);transform:translateY(-1px);}
+  .card-top{display:flex;align-items:flex-start;gap:12px;padding:15px 16px 13px;}
+  .date-chip{
+    flex-shrink:0;text-align:center;background:var(--green-dd);color:#fff;border-radius:12px;
+    padding:8px 0 7px;width:58px;
+  }
+  .date-chip .d{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:22px;line-height:1;}
+  .date-chip .m{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-top:3px;opacity:.85;}
+  .date-chip .w{font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;margin-top:5px;color:#9FE6CC;font-weight:700;}
+  .ct-main{flex:1;min-width:0;}
+  .ct-main .kicker{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--green);}
+  .ct-main h3{font-family:'Baloo 2',sans-serif;font-weight:700;font-size:18.5px;margin:3px 0 0;color:var(--ink);line-height:1.15;}
+  .ct-main .park{font-size:13.5px;color:var(--muted);font-weight:600;margin-top:2px;}
+
+  /* badge lotação */
+  .crowd{
+    flex-shrink:0;text-align:center;border-radius:12px;color:#fff;padding:7px 0 6px;width:54px;
+  }
+  .crowd .num{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:20px;line-height:1;}
+  .crowd .num small{font-size:11px;font-weight:700;opacity:.85;}
+  .crowd .lvl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin-top:3px;font-weight:700;}
+  .crowd.c-alta{background:var(--c-alta);}
+  .crowd.c-alta2{background:var(--c-alta2);}
+  .crowd.c-media{background:var(--c-media);}
+  .crowd.c-baixa{background:var(--c-baixa);}
+
+  /* badge ajustado */
+  .adj{
+    display:inline-flex;align-items:center;gap:7px;margin:0 16px 13px;
+    background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;
+    font-size:11.5px;font-weight:700;padding:7px 13px;border-radius:30px;
+    box-shadow:0 3px 12px rgba(29,158,117,.35);
+  }
+  .adj svg{width:14px;height:14px;fill:#fff;}
+
+  /* justificativa */
+  .why{margin:0 16px 14px;background:var(--mint);border-radius:12px;padding:12px 14px;border-left:3px solid var(--green);}
+  .why .lab{font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green-d);display:block;margin-bottom:5px;}
+  .why p{font-size:13px;line-height:1.6;color:#2E433A;margin:0;}
+  .why p b{color:var(--green-dd);}
+
+  /* lista de itens (logística/voos) */
+  .items{list-style:none;margin:0 16px 15px;padding:0;}
+  .items li{display:flex;gap:11px;padding:7px 0;border-bottom:1px dashed #E3EFE9;font-size:13.5px;color:#2E433A;line-height:1.4;}
+  .items li:last-child{border-bottom:none;}
+  .items li .t{flex-shrink:0;font-weight:700;color:var(--green-d);min-width:52px;font-variant-numeric:tabular-nums;}
+  .items li .x{flex:1;}
+  .items li .x b{color:var(--ink);}
+
+  .badge-soft{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+    color:var(--green-d);background:var(--mint);border:1px solid var(--mint2);border-radius:20px;padding:3px 10px;margin:0 16px 14px;}
+
+  /* navegação — Google Maps / Waze */
+  .nav-row{display:flex;flex-wrap:wrap;gap:9px;margin:0 16px 14px;}
+  .nav-row .nlab{flex-basis:100%;font-size:10.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
+  .nav-btn{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13px;font-weight:700;padding:10px 15px;border-radius:12px;transition:.15s;flex:1;justify-content:center;min-width:130px;}
+  .nav-btn svg{width:16px;height:16px;flex-shrink:0;}
+  .nav-btn.gmaps{background:#fff;color:var(--green-d);border:1.5px solid var(--mint2);}
+  .nav-btn.gmaps:hover{border-color:var(--green);background:var(--mint);}
+  .nav-btn.waze{background:#33CCFF;color:#08303F;border:1.5px solid #33CCFF;}
+  .nav-btn.waze:hover{filter:brightness(1.04);}
+  /* botão "conheça o parque" */
+  .know{display:flex;align-items:center;gap:11px;margin:0 16px 14px;text-decoration:none;
+    background:linear-gradient(135deg,var(--green-dd),var(--green-d));color:#fff;border-radius:13px;padding:13px 16px;
+    box-shadow:0 5px 16px rgba(15,110,86,.28);transition:.15s;}
+  .know:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(15,110,86,.36);}
+  .know .kic{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.16);
+    display:flex;align-items:center;justify-content:center;font-size:17px;}
+  .know .ktx{flex:1;line-height:1.25;}
+  .know .ktx b{display:block;font-size:13.5px;font-weight:700;}
+  .know .ktx span{display:block;font-size:11.5px;color:#CDEDE1;opacity:.9;}
+  .know .karr{font-size:18px;opacity:.9;}
+  /* link de rota compacto (itens) */
+  .item-nav{display:inline-flex;gap:9px;margin-top:5px;}
+  .item-nav a{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;text-decoration:none;color:var(--green-d);border-bottom:1px dotted var(--green);}
+  .item-nav a.w{color:#1192bd;border-bottom-color:#33CCFF;}
+  .item-nav a svg{width:13px;height:13px;}
+  .item-nav a:hover{opacity:.8;}
+
+  /* ===================== RODAPÉ ===================== */
+  footer{background:linear-gradient(160deg,var(--bg-dark),#0A1C14);color:#fff;margin-top:30px;}
+  .foot-inner{max-width:760px;margin:0 auto;padding:36px 18px 30px;text-align:center;}
+  .foot-inner img.logo{width:200px;height:auto;display:block;margin:0 auto 6px;}
+  .foot-tag{font-size:13px;color:#9FE6CC;font-weight:600;margin:4px 0 24px;}
+  .contacts{display:flex;flex-direction:column;gap:11px;max-width:340px;margin:0 auto;}
+  .contact{
+    display:flex;align-items:center;gap:13px;text-decoration:none;color:#fff;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;
+    padding:13px 16px;transition:.16s;text-align:left;
+  }
+  .contact:hover{background:rgba(255,255,255,.12);border-color:rgba(127,227,191,.5);}
+  .contact .ic{flex-shrink:0;width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;}
+  .contact .ic svg{width:21px;height:21px;}
+  .contact.wa .ic{background:var(--wa);}
+  .contact.ig .ic{background:linear-gradient(45deg,#F09433,#E6683C 30%,#DC2743 60%,#CC2366 80%,#BC1888);}
+  .contact.site .ic{background:var(--green);}
+  .contact .tx b{display:block;font-size:14.5px;font-weight:700;}
+  .contact .tx span{display:block;font-size:12px;color:#B8DCD0;margin-top:1px;}
+  .foot-fine{font-size:11px;color:#6E8C80;margin-top:26px;line-height:1.6;}
+
+  @media(min-width:560px){ .day{padding-left:62px;} .tl::before{left:38px;} .day .node{left:27px;} }
+  @media(max-width:380px){ .date-chip{width:50px;} .crowd{width:48px;} }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <img src="LogoBranco.png" alt="VTurismo — Agência de Viagens" />
+    </div>
+
+    <span class="hero-kick">✈ Roteiro personalizado</span>
+    <h1>Sua viagem para<span class="fam" id="hero-familia">Família [Sobrenome]</span></h1>
+    <p class="destino" id="hero-destino">Orlando · Flórida — Estados Unidos</p>
+
+    <div class="periodo" id="hero-periodo">
+      <span>📅</span><span>De <b>01</b> a <b>14 de julho de 2026</b></span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">14</div><div class="l">Dias de viagem</div></div>
+      <div class="hstat"><div class="n">7</div><div class="l">Parques visitados</div></div>
+      <div class="hstat"><div class="n">3</div><div class="l">Dias livres</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== CREDIBILIDADE ===================== -->
+<section class="cred">
+  <div class="cred-inner">
+    <span class="cred-tag">Por que esta ordem</span>
+    <h2>Um roteiro montado com dados reais de lotação</h2>
+    <p>
+      Não organizamos os parques por ordem de preferência — organizamos pelo que os
+      <b>dados mostram sobre cada dia</b>. Cruzamos o planejamento da sua família com o
+      histórico de lotação de cada parque para colocar cada visita no melhor dia possível
+      dentro da sua janela de viagem.
+    </p>
+    <p>
+      Em duas datas a ordem original foi ajustada justamente por causa desses números —
+      esses dias estão marcados como <b>Ajustado pela VTurismo</b> ao longo do roteiro.
+    </p>
+
+    <div class="source">
+      <div class="ic">📊</div>
+      <div class="tx">
+        <b>Como medimos a lotação:</b> escala de 1 a 10 baseada em mais de 20 anos
+        de histórico de tempo de espera, sazonalidade, feriados e eventos especiais —
+        a mesma leitura de dados que a VTurismo usa para montar todos os seus roteiros.
+      </div>
+    </div>
+
+    <div class="scale">
+      <span><i style="background:var(--c-baixa)"></i>1–3 Baixa</span>
+      <span><i style="background:var(--c-media)"></i>4–6 Média</span>
+      <span><i style="background:var(--c-alta)"></i>7–8 Alta</span>
+      <span><i style="background:var(--c-alta2)"></i>9–10 Pico</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIMELINE ===================== -->
+<section class="timeline-sec">
+  <div class="sec-head">
+    <span class="cred-tag">Dia a dia</span>
+    <h2>O roteiro completo da sua viagem</h2>
+  </div>
+  <div class="tl" id="timeline"><!-- cards via JS --></div>
+</section>
+
+<!-- ===================== RODAPÉ ===================== -->
+<footer>
+  <div class="foot-inner">
+    <img class="logo" src="LogoBranco.png" alt="VTurismo — Agência de Viagens" />
+    <p class="foot-tag">Especialistas em Orlando &amp; Disney</p>
+
+    <div class="contacts">
+      <a class="contact wa" href="https://wa.me/552141452310" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.215zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></span>
+        <span class="tx"><b>WhatsApp</b><span>(21) 4145-2310</span></span>
+      </a>
+      <a class="contact ig" href="https://instagram.com/vturismoviagens" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.19.4-.55.21-.94.47-1.35.88-.41.41-.67.8-.88 1.35-.16.42-.35 1.04-.4 2.19-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.19.21.55.47.94.88 1.35.41.41.8.67 1.35.88.42.16 1.04.35 2.19.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.19-.4.55-.21.94-.47 1.35-.88.41-.41.67-.8.88-1.35.16-.42.35-1.04.4-2.19.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.19a3.6 3.6 0 00-.88-1.35 3.6 3.6 0 00-1.35-.88c-.42-.16-1.04-.35-2.19-.4-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.46 5.46 0 110 10.92 5.46 5.46 0 010-10.92zm0 9a3.54 3.54 0 100-7.08 3.54 3.54 0 000 7.08zm6.95-9.22a1.28 1.28 0 11-2.55 0 1.28 1.28 0 012.55 0z"/></svg></span>
+        <span class="tx"><b>Instagram</b><span>@vturismoviagens</span></span>
+      </a>
+      <a class="contact site" href="https://www.vturismo.com.br" target="_blank" rel="noopener">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></span>
+        <span class="tx"><b>Site</b><span>www.vturismo.com.br</span></span>
+      </a>
+    </div>
+
+    <p class="foot-fine">
+      Roteiro elaborado pela VTurismo · Níveis de lotação com base em análise de dados históricos dos parques (julho/2026).<br>
+      Horários e voos conforme planejamento da família. Sujeitos a confirmação das companhias aéreas.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — edite aqui para adaptar a outras famílias
+   ===================================================================== */
+const CONFIG = {
+  familia: "Família Simões",                       // nome exibido no hero
+  destino: "Orlando · Flórida — Estados Unidos",
+  periodo: { ini: "01", fim: "14 de julho de 2026" }
+};
+
+/* =====================================================================
+   ROTEIRO — sequência de dias (não inventar dados de lotação)
+   tipo: "transito" | "parque" | "logistica"
+   crowd: número 1–10  (null quando não há visita a parque)
+   ajustado: true  -> exibe selo "Ajustado pela VTurismo"
+   ===================================================================== */
+const ROTEIRO = [
+  {
+    data:"01/07", dia:"01", mes:"Jul", semana:"Qua", tipo:"transito",
+    titulo:"Embarque", parque:"Saída do Rio de Janeiro",
+    itens:[
+      {t:"20h",   x:"Saída para o aeroporto — <b>Terminal 2</b>"},
+      {t:"Voo",   x:"<b>CM872</b> · 02/07 às 01h30 — Terminal C"}
+    ]
+  },
+  {
+    data:"02/07", dia:"02", mes:"Jul", semana:"Qui", tipo:"transito",
+    titulo:"Chegada em Orlando", parque:"Conexão no Panamá",
+    itens:[
+      {t:"06h45", x:"Chegada ao Panamá"},
+      {t:"09h39", x:"Voo <b>CM962</b> — Panamá → Orlando"},
+      {t:"14h13", x:"Chegada a <b>Orlando</b>"},
+      {t:"17h",   x:"Chegada ao hotel · <b>check-in 19h</b>"},
+      {t:"20h",   x:"Walmart", nav:"Walmart, Orlando, FL"},
+      {t:"22h30", x:"Jantar — Olive Garden", nav:"Olive Garden, Orlando, FL"}
+    ]
+  },
+  {
+    data:"03/07", dia:"03", mes:"Jul", semana:"Sex", tipo:"parque",
+    titulo:"Animal Kingdom", parque:"Disney's Animal Kingdom",
+    crowd:8, nav:"Disney's Animal Kingdom, Orlando, FL", slug:"animal-kingdom",
+    justificativa:"Dia oficialmente marcado como <b>recomendado</b> para o Animal Kingdom na nossa análise de lotação — mesmo com a lotação geral alta, é o melhor dia da semana especificamente para este parque."
+  },
+  {
+    data:"04/07", dia:"04", mes:"Jul", semana:"Sáb", tipo:"parque",
+    titulo:"EPCOT — 4 de Julho", parque:"EPCOT · Feriado de Independência",
+    crowd:8, nav:"EPCOT, Orlando, FL", slug:"epcot",
+    justificativa:"Teto de lotação do mês (feriado nacional, com fogos de 4 de julho). Manhã e início de tarde para as atrações concorridas (<b>Cosmic Rewind</b>, <b>Soarin'</b>); a partir das 16h o parque enche para os fogos — jante no World Showcase e posicione-se cedo perto da saída (\"bola\" do EPCOT) para evitar +1h de caminhada na saída."
+  },
+  {
+    data:"05/07", dia:"05", mes:"Jul", semana:"Dom", tipo:"logistica",
+    titulo:"Compras + Futebol", parque:"Dia de logística — sem parque",
+    itens:[
+      {t:"11–19h", x:"<b>Orlando Outlet Marketplace</b> · lojas Clearance — 28 min do hotel", nav:"Orlando Outlet Marketplace, 5269 International Dr, Orlando, FL 32819"},
+      {t:"16h",    x:"Jogo do Brasil — horário de Orlando"}
+    ]
+  },
+  {
+    data:"06/07", dia:"06", mes:"Jul", semana:"Seg", tipo:"parque",
+    titulo:"Universal Studios Florida", parque:"Universal Studios Florida",
+    crowd:8, ajustado:true, nav:"Universal Studios Florida, Orlando, FL", slug:"universal-studios",
+    justificativa:"O roteiro original trazia a <b>Islands of Adventure</b> nesta data, mas os dados apontam <b>pico de movimento</b> na IOA justamente neste dia. Por isso a IOA foi remanejada para o dia <b>09/07</b> e a Universal Studios Florida, mais tranquila, ficou neste dia."
+  },
+  {
+    data:"07/07", dia:"07", mes:"Jul", semana:"Ter", tipo:"parque",
+    titulo:"Magic Kingdom", parque:"Magic Kingdom",
+    crowd:8, nav:"Magic Kingdom Park, Orlando, FL", slug:"magic-kingdom",
+    justificativa:"Dia neutro nos dados (sem pico nem recomendação especial) — dentro da faixa alta da semana, mas sem agravante adicional."
+  },
+  {
+    data:"08/07", dia:"08", mes:"Jul", semana:"Qua", tipo:"parque",
+    titulo:"Epic Universe", parque:"Universal Epic Universe",
+    crowd:7, nav:"Universal Epic Universe, Orlando, FL", slug:"epic-universe",
+    justificativa:"Parque novo, em alta demanda — aparece com <b>pico de movimento</b> nesta data e em praticamente toda a semana, sem dia realmente tranquilo disponível. Recomendação: chegar no <b>early entry (9h–10h)</b> e priorizar as atrações mais concorridas primeiro."
+  },
+  {
+    data:"09/07", dia:"09", mes:"Jul", semana:"Qui", tipo:"parque",
+    titulo:"Islands of Adventure", parque:"Universal's Islands of Adventure",
+    crowd:7, ajustado:true, nav:"Universal Islands of Adventure, Orlando, FL", slug:"islands-of-adventure",
+    justificativa:"A IOA estava originalmente no dia 06, quando os dados apontam <b>pico de movimento</b> para ela — por isso foi remanejada para cá, dentro da faixa alta da semana (7/10), mas sem o agravante daquele dia. Comece por <b>Hagrid's</b> e pelo <b>VelociCoaster</b>, que formam as maiores filas."
+  },
+  {
+    data:"10/07", dia:"10", mes:"Jul", semana:"Sex", tipo:"parque",
+    titulo:"Hollywood Studios", parque:"Disney's Hollywood Studios",
+    crowd:7, nav:"Disney's Hollywood Studios, Orlando, FL", slug:"hollywood-studios",
+    justificativa:"Também com <b>pico de movimento</b> nesta data. Reforçar a chegada no <b>early entry</b> e priorizar <b>Rise of the Resistance</b> e <b>Slinky Dog</b> logo na abertura."
+  },
+  {
+    data:"11/07", dia:"11", mes:"Jul", semana:"Sáb", tipo:"logistica",
+    titulo:"Miami", parque:"Dia em Miami — sem parque",
+    itens:[
+      {t:"16h", x:"Jogo do Brasil — horário de Miami"}
+    ]
+  },
+  {
+    data:"12/07", dia:"12", mes:"Jul", semana:"Dom", tipo:"logistica",
+    titulo:"Compras", parque:"Dia livre de compras — sem parque",
+    itens:[]
+  },
+  {
+    data:"13/07", dia:"13", mes:"Jul", semana:"Seg", tipo:"transito",
+    titulo:"Volta para casa", parque:"Orlando → Panamá → Rio de Janeiro",
+    itens:[
+      {t:"11h",   x:"Saída do hotel para o aeroporto — <b>Terminal C</b>"},
+      {t:"16h58", x:"Voo <b>CM459</b> · Orlando → Panamá (19h28)"},
+      {t:"22h44", x:"Voo <b>CM216</b> · Panamá → Rio"},
+      {t:"14/07", x:"Chegada ao <b>Rio de Janeiro 07h40</b> — Terminal 2"}
+    ]
+  }
+];
+
+/* ---------- helpers de lotação ---------- */
+function crowdClass(n){
+  if(n>=9) return "c-alta2";
+  if(n>=7) return "c-alta";
+  if(n>=4) return "c-media";
+  return "c-baixa";
+}
+function crowdLabel(n){
+  if(n>=7) return "Alta";
+  if(n>=4) return "Média";
+  return "Baixa";
+}
+const ICON = {transito:"✈", parque:"★", logistica:"●"};
+
+/* ---------- navegação: gera rota a partir da posição atual ---------- */
+function gmapsURL(q){ return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q); }
+function wazeURL(q){ return "https://www.waze.com/ul?q=" + encodeURIComponent(q) + "&navigate=yes"; }
+const SVG_PIN  = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>';
+const SVG_WAZE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.6 11.9c.5-1.6.2-3.4-.9-4.9-1.4-1.9-3.7-2.9-6.3-2.9-3.9 0-7.1 2.7-7.1 6.6 0 .5 0 1 .1 1.4-.6.5-1 1.2-1 2 0 1.1.8 2 1.9 2.2.6 1 1.7 1.8 3 2.1a2.4 2.4 0 004.7.1 2.4 2.4 0 004.6-.9c1.4-.7 2.4-2 2.4-3.6 0-.9-.4-1.7-1.3-2.2zM9.5 10.5a1 1 0 110-2 1 1 0 010 2zm5 0a1 1 0 110-2 1 1 0 010 2z"/></svg>';
+
+/* ---------- render ---------- */
+function render(){
+  // hero
+  document.getElementById("hero-familia").textContent = CONFIG.familia;
+  document.getElementById("hero-destino").textContent = CONFIG.destino;
+  document.getElementById("hero-periodo").innerHTML =
+    `<span>📅</span><span>De <b>${CONFIG.periodo.ini}</b> a <b>${CONFIG.periodo.fim}</b></span>`;
+
+  const tl = document.getElementById("timeline");
+  tl.innerHTML = ROTEIRO.map(d=>{
+    const isPark = d.tipo==="parque";
+    let inner = "";
+
+    // selo ajustado
+    if(d.ajustado){
+      inner += `<div class="adj"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8z"/></svg>Ajustado pela VTurismo</div>`;
+    }
+
+    // justificativa
+    if(d.justificativa){
+      inner += `<div class="why"><span class="lab">Por que neste dia</span><p>${d.justificativa}</p></div>`;
+    }
+
+    // botão "conheça o parque" (abre página do parque em nova aba)
+    if(d.slug){
+      inner += `<a class="know" href="parque.html?p=${d.slug}" target="_blank" rel="noopener">
+        <span class="kic">🎢</span>
+        <span class="ktx"><b>Conheça o parque e as atrações</b><span>Fotos e destaques — abre em nova aba</span></span>
+        <span class="karr">→</span>
+      </a>`;
+    }
+
+    // navegação do parque (rota saindo do hotel)
+    if(d.nav){
+      inner += `<div class="nav-row">
+        <span class="nlab">Como chegar — rota saindo do hotel</span>
+        <a class="nav-btn gmaps" href="${gmapsURL(d.nav)}" target="_blank" rel="noopener">${SVG_PIN} Google Maps</a>
+        <a class="nav-btn waze" href="${wazeURL(d.nav)}" target="_blank" rel="noopener">${SVG_WAZE} Waze</a>
+      </div>`;
+    }
+
+    // itens (logística / voos)
+    if(d.itens && d.itens.length){
+      inner += `<ul class="items">` + d.itens.map(i=>{
+        let mapLinks = "";
+        if(i.nav){
+          mapLinks = `<span class="item-nav">
+            <a href="${gmapsURL(i.nav)}" target="_blank" rel="noopener">${SVG_PIN} Maps</a>
+            <a class="w" href="${wazeURL(i.nav)}" target="_blank" rel="noopener">${SVG_WAZE} Waze</a></span>`;
+        }
+        return `<li><span class="t">${i.t}</span><span class="x">${i.x}${mapLinks}</span></li>`;
+      }).join("") + `</ul>`;
+    } else if(d.tipo==="logistica" && (!d.itens || !d.itens.length)){
+      inner += `<span class="badge-soft">Dia livre · sem agenda fixa</span>`;
+    }
+
+    // badge de lotação (só quando há parque)
+    let crowdBadge = "";
+    if(typeof d.crowd === "number"){
+      crowdBadge = `<div class="crowd ${crowdClass(d.crowd)}">
+        <div class="num">${d.crowd}<small>/10</small></div>
+        <div class="lvl">${crowdLabel(d.crowd)}</div></div>`;
+    }
+
+    return `<div class="day ${isPark?"is-park":""}">
+      <div class="node">${ICON[d.tipo]||"●"}</div>
+      <div class="card">
+        <div class="card-top">
+          <div class="date-chip">
+            <div class="d">${d.dia}</div><div class="m">${d.mes}</div><div class="w">${d.semana}</div>
+          </div>
+          <div class="ct-main">
+            <span class="kicker">${isPark?"Dia de parque":(d.tipo==="transito"?"Deslocamento":"Logística")}</span>
+            <h3>${d.titulo}</h3>
+            <div class="park">${d.parque}</div>
+          </div>
+          ${crowdBadge}
+        </div>
+        ${inner}
+      </div>
+    </div>`;
+  }).join("");
+}
+render();
+</script>
+</body>
+</html>
